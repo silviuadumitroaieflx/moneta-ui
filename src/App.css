@@ -1,38 +1,221 @@
-.App {
+/* ------------------------- RESET & FONTS ------------------------- */
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
+@import url("https://unicons.iconscout.com/release/v4.0.8/css/line.css");
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #1f2029;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h1, h3, h4 {
+  color: #ffeba7;
+  margin: 0;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* ------------------------- CONTAINER ------------------------- */
+.container {
+  max-width: 440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.card {
+  background-color: #2a2b38;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* ------------------------- FORM ELEMENTS ------------------------- */
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.form-input, .form-style {
+  width: 100%;
+  padding: 12px 20px 12px 50px;
+  border-radius: 5px;
+  border: none;
+  background-color: #1f2029;
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-sizing: border-box;
+}
+
+.form-input:focus, .form-style:focus {
+  outline: none;
+  background-color: #272833;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #ffeba7;
+}
+
+/* ------------------------- BUTTONS ------------------------- */
+.btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #ffeba7;
+  color: #1f2029;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 15px;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background-color: #1f2029;
+  color: #ffeba7;
+  box-shadow: 0 4px 12px rgba(255, 235, 167, 0.2);
+}
+
+/* ------------------------- SWITCHER ------------------------- */
+.toggle-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #fff;
+  position: relative;
+  z-index: 2;
 }
 
-.App-link {
-  color: #61dafb;
+#reg-log {
+  position: absolute;
+  left: -9999px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.switch {
+  display: block;
+  width: 60px;
+  height: 16px;
+  background-color: #ffeba7;
+  border-radius: 8px;
+  position: relative;
+}
+
+.switch::before {
+  content: "\eb4f";
+  font-family: 'unicons';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #102770;
+  color: #ffeba7;
+  text-align: center;
+  line-height: 36px;
+  font-size: 20px;
+  transition: transform 0.4s ease;
+  z-index: 2;
+}
+
+#reg-log:checked + .switch::before {
+  transform: translateX(44px) rotate(-270deg);
+}
+
+/* ------------------------- CARD 3D WRAPPER ------------------------- */
+.card-3d-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  height: 500px;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  margin: 0 auto;
+}
+
+.card-3d-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 600ms ease-out;
+}
+
+#reg-log:checked ~ .card-3d-wrap .card-3d-wrapper {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  width: 100%;
+  height: 100%;
+  background-color: #2a2b38;
+  position: absolute;
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+/* ------------------------- TOASTIFY FIX ------------------------- */
+.Toastify__toast-container {
+  z-index: 9999;
+}
+
+.Toastify__toast-theme--dark {
+  background: #1f2029;
+  color: #fff;
+}
+
+/* ------------------------- MISC ------------------------- */
+.text-link {
+  color: #ffeba7;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.card-front .form-group,
+.card-back .form-group {
+  width: 100%;
+}
+
+.rotate {
+  transform: rotateY(180deg) !important;
 }
