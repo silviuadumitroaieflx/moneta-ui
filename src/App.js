@@ -22,7 +22,7 @@ function App() {
 
   const login = async () => {
     try {
-      const res = await axios.post("http://localhost:3000/login", { email, password });
+      const res = await axios.post("https://moneta-api-9vi5.onrender.com/login", { email, password });
       setToken(res.data.token);
       localStorage.setItem("token", res.data.token);
       toast.success("Autentificat cu succes!");
@@ -33,7 +33,7 @@ function App() {
 
   const register = async () => {
     try {
-      await axios.post("http://localhost:3000/register", {
+      await axios.post("https://moneta-api-9vi5.onrender.com/register", {
         name,
         phone,
         email,
@@ -56,7 +56,7 @@ function App() {
   const getBalance = async () => {
     try {
       const userId = parseInt(token.split(" ")[1]);
-      const res = await axios.get(`http://localhost:3000/balance/${userId}`, {
+      const res = await axios.get(`https://moneta-api-9vi5.onrender.com/balance/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setBalance(res.data.balance);
@@ -68,7 +68,7 @@ function App() {
   const transfer = async () => {
     try {
       const userId = parseInt(token.split(" ")[1]);
-      await axios.post("http://localhost:3000/transfer", {
+      await axios.post("https://moneta-api-9vi5.onrender.com/transfer", {
         fromId: userId,
         toId: parseInt(toId),
         amount: parseInt(amount),
